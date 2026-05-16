@@ -1,84 +1,271 @@
-🌳 Árbol Binario de Búsqueda
-Binary Search Tree — Java 17+
-Mostrar imagen
-Mostrar imagen
-Mostrar imagen
-Implementación completa desde cero · Sin librerías nativas de árboles · Menú interactivo en consola
-</div>
+# 🌳 Árbol Binario de Búsqueda (BST) — Java 17+
 
-¿Qué es un BST?
-Un Árbol Binario de Búsqueda es una estructura de datos jerárquica donde cada nodo cumple una regla simple pero poderosa:
-        [50]
-       /    \
-    [30]    [70]        Todo lo de la izquierda < raíz
-    /  \    /  \        Todo lo de la derecha  > raíz
- [20] [40] [60] [80]
-                  \
-                  [90]
-Esta propiedad permite buscar, insertar y eliminar en O(log n) en el caso promedio — equivalente a una búsqueda binaria, pero sobre datos dinámicos.
+> Implementación completa desde cero de un **Binary Search Tree (BST)** en Java.
+> Proyecto universitario de **Estructuras de Datos** con menú interactivo, visualización del árbol y análisis de complejidad algorítmica.
 
-Estructura del Proyecto
+---
+
+# 📌 Características del Proyecto
+
+✅ Implementación recursiva pura
+✅ Sin uso de `TreeMap`, `TreeSet` ni librerías nativas de árboles
+✅ Inserción, búsqueda y eliminación
+✅ Recorridos del árbol
+✅ Visualización jerárquica en consola
+✅ Explicación automática de casos de eliminación
+✅ Menú interactivo
+✅ Análisis de complejidad Big O
+
+---
+
+# 🌲 ¿Qué es un BST?
+
+Un **Árbol Binario de Búsqueda** es una estructura de datos jerárquica donde cada nodo cumple la siguiente propiedad:
+
+```text
+Todo valor menor va a la izquierda
+Todo valor mayor va a la derecha
+```
+
+Ejemplo:
+
+```text
+                [50]
+               /    \
+           [30]    [70]
+           /  \     /  \
+        [20] [40] [60] [80]
+                               \
+                               [90]
+```
+
+Gracias a esta organización, el árbol permite realizar búsquedas eficientes similares a una búsqueda binaria.
+
+---
+
+# 📂 Estructura del Proyecto
+
+```text
 BST_Proyecto/
 │
-├── 📄 README.md
-└── 📁 src/
-    ├── Nodo.java   →  Define cada nodo: dato + hijo izquierdo + hijo derecho
-    ├── BST.java    →  Toda la lógica del árbol (insertar, buscar, eliminar, recorrer)
-    └── Main.java   →  Menú interactivo en consola
+├── README.md
+└── src/
+    ├── Nodo.java
+    ├── BST.java
+    └── Main.java
+```
 
-Funcionalidades
-#OpciónDescripción1Insertar valorColoca el valor en su posición correcta2Eliminar valorDetecta y explica el caso antes de eliminar3Buscar valorRetorna si el valor existe o no4Ver recorridosIn-Order, Pre-Order y Post-Order5Ver árbol visualImprime la jerarquía con ramas L / R6Ver Big OTabla de complejidad algorítmica0SalirCierra el programa
+| Archivo     | Descripción                         |
+| ----------- | ----------------------------------- |
+| `Nodo.java` | Define la estructura de cada nodo   |
+| `BST.java`  | Implementa toda la lógica del árbol |
+| `Main.java` | Menú interactivo y ejecución        |
 
-Métodos Implementados
-insert(int valor)
-Recorre el árbol de forma recursiva comparando valores hasta encontrar la posición correcta. No permite duplicados.
-search(int valor)
-Descarta la mitad del árbol en cada paso, igual que una búsqueda binaria. Retorna true o false.
-delete(int valor) — 3 casos
-El método más complejo del árbol. Antes de eliminar, el programa explica qué caso aplica:
-CasoSituaciónSoluciónCaso 1Nodo sin hijos (hoja)Se elimina directamenteCaso 2Nodo con un solo hijoEl hijo sube y ocupa su lugarCaso 3Nodo con dos hijosSe busca el sucesor in-order (mínimo del subárbol derecho), se copia su valor al nodo y se elimina el sucesor
-Recorridos
-MétodoOrdenResultadoinOrder()Izquierdo → Raíz → DerechoValores en orden ascendentepreOrder()Raíz → Izquierdo → DerechoÚtil para copiar el árbolpostOrder()Izquierdo → Derecho → RaízÚtil para liberar memoria
+---
 
-Complejidad Algorítmica
-OperaciónCaso PromedioCaso PeorinsertO(log n)O(n)searchO(log n)O(n)deleteO(log n)O(n)inOrder / preOrder / postOrderO(n)O(n)alturaO(n)O(n)
+# ⚙️ Funcionalidades
 
-¿Cuándo ocurre el peor caso O(n)?
-Cuando los valores se insertan en orden ascendente o descendente (ej: 1, 2, 3, 4, 5). El árbol se degenera en una lista enlazada y pierde toda ventaja logarítmica.
+| Opción | Función                   |
+| ------ | ------------------------- |
+| 1      | Insertar valor            |
+| 2      | Eliminar valor            |
+| 3      | Buscar valor              |
+| 4      | Ver recorridos            |
+| 5      | Mostrar estructura visual |
+| 6      | Ver complejidad Big O     |
+| 0      | Salir                     |
 
+---
 
-Compilar y Ejecutar
-Requisitos: Java 17 o superior
-bash# Entrar a la carpeta src
-cd BST_Proyecto/src
+# 🧠 Métodos Implementados
 
-# Compilar
-javac Nodo.java BST.java Main.java
+## `insert(int valor)`
 
-# Ejecutar
-java Main
-Vista previa del menú:
+Inserta un valor respetando la propiedad del BST.
+
+* Menores → izquierda
+* Mayores → derecha
+* No permite duplicados
+
+---
+
+## `search(int valor)`
+
+Busca un valor dentro del árbol.
+
+Retorna:
+
+```java
+true
+```
+
+si el valor existe, o:
+
+```java
+false
+```
+
+si no existe.
+
+---
+
+# ❌ `delete(int valor)` — Eliminación de nodos
+
+El método más importante y complejo del BST.
+
+El programa detecta automáticamente qué caso aplicar:
+
+| Caso   | Situación          | Acción                     |
+| ------ | ------------------ | -------------------------- |
+| Caso 1 | Nodo hoja          | Se elimina directamente    |
+| Caso 2 | Nodo con un hijo   | El hijo reemplaza al nodo  |
+| Caso 3 | Nodo con dos hijos | Se usa el sucesor in-order |
+
+---
+
+## 🔍 ¿Qué es el sucesor in-order?
+
+Es el valor más pequeño del subárbol derecho.
+
+Ejemplo:
+
+```text
+        [30]
+       /    \
+    [20]   [40]
+```
+
+El sucesor in-order de `30` es `40`.
+
+---
+
+# 🔄 Recorridos del Árbol
+
+| Método        | Orden                      | Uso                        |
+| ------------- | -------------------------- | -------------------------- |
+| `inOrder()`   | Izquierda → Raíz → Derecha | Devuelve valores ordenados |
+| `preOrder()`  | Raíz → Izquierda → Derecha | Copiar estructura          |
+| `postOrder()` | Izquierda → Derecha → Raíz | Liberar memoria            |
+
+---
+
+# 📈 Complejidad Algorítmica (Big O)
+
+| Operación  | Caso Promedio | Peor Caso |
+| ---------- | ------------- | --------- |
+| Insertar   | O(log n)      | O(n)      |
+| Buscar     | O(log n)      | O(n)      |
+| Eliminar   | O(log n)      | O(n)      |
+| Recorridos | O(n)          | O(n)      |
+| Altura     | O(n)          | O(n)      |
+
+---
+
+# ⚠️ ¿Cuándo ocurre el peor caso?
+
+Cuando los valores se insertan en orden ascendente o descendente:
+
+```text
+1 → 2 → 3 → 4 → 5
+```
+
+El árbol pierde balance y se comporta como una lista enlazada.
+
+---
+
+# 🖥️ Vista Previa del Programa
+
+```text
 ==================================================
     ARBOL BINARIO DE BUSQUEDA (BST)
     Estructuras de Datos - Java 17+
 ==================================================
+
   [1] Insertar valor
   [2] Eliminar valor
   [3] Buscar valor
-  [4] Ver recorridos (In / Pre / Post Order)
-  [5] Ver estructura visual del arbol
+  [4] Ver recorridos
+  [5] Ver estructura visual
   [6] Ver complejidad Big O
   [0] Salir
-Ejemplo de eliminación con diagnóstico automático:
-  Ingrese el valor a eliminar: 30
+```
 
-  Caso detectado: CASO 3 - Dos hijos: el sucesor in-order es 40,
-                  reemplaza a 30 y se elimina del subarbol derecho.
+---
 
-  [OK] Valor 30 eliminado correctamente.
+# 🌳 Visualización del Árbol
 
-Implementación
-Todo el árbol está implementado con recursión pura, sin estructuras auxiliares. No se usa ninguna librería nativa de Java que maneje árboles (TreeMap, TreeSet, etc.).
-Nodo.java  →  int dato  +  Nodo izquierdo  +  Nodo derecho
-BST.java   →  Nodo raiz  +  métodos recursivos
-Main.java  →  Scanner   +  menú de opciones
+```text
+  [50]
+  |    L-- [30]
+  |    |    L-- [20]
+  |    |    R-- [40]
+  |    R-- [70]
+  |         L-- [60]
+  |         R-- [80]
+```
+
+---
+
+# 💻 Compilación y Ejecución
+
+## Requisitos
+
+* Java 17 o superior
+
+---
+
+## Compilar
+
+```bash
+cd BST_Proyecto/src
+javac Nodo.java BST.java Main.java
+```
+
+---
+
+## Ejecutar
+
+```bash
+java Main
+```
+
+---
+
+# 📹 Video Explicativo
+
+El proyecto incluye un video demostrando:
+
+* Inserción de valores
+* Eliminación de nodos
+* Recorridos
+* Explicación de Big O
+* Funcionamiento interno del BST
+
+🔗 Agregar enlace de YouTube aquí
+
+---
+
+# 🛠️ Tecnologías Utilizadas
+
+* Java 17
+* Programación Orientada a Objetos
+* Recursión
+* Estructuras de Datos
+
+---
+
+# 📚 Conceptos Aplicados
+
+* Árboles binarios
+* Recursividad
+* Complejidad algorítmica
+* Recorridos DFS
+* Gestión dinámica de memoria
+* Estructuras jerárquicas
+
+---
+
+# 👨‍💻 Autor
+
+Proyecto desarrollado para el curso de **Estructuras de Datos**.
+Por: Dylan Odair Paz Navas (202503824)
