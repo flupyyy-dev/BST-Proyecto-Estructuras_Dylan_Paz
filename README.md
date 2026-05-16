@@ -216,8 +216,9 @@ El árbol pierde balance y se comporta como una lista enlazada.
 
 ## Compilar
 
+Luego de extraer archivo comprimido, debe entrar a la carpeta y ejecutar terminal en la primera y única carpeta.
 ```bash
-cd BST_Proyecto/src
+cd src
 javac Nodo.java BST.java Main.java
 ```
 
