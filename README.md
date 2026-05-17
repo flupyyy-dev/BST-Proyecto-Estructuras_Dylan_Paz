@@ -242,7 +242,7 @@ El proyecto incluye un video demostrando:
 * Explicación de Big O
 * Funcionamiento interno del BST
 
-🔗 Agregar enlace de YouTube aquí
+🔗(https://youtu.be/ag83NW1ObcU)
 
 ---
 
