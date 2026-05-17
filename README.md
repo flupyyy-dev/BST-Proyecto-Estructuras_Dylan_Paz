@@ -268,5 +268,6 @@ El proyecto incluye un video demostrando:
 
 # 👨‍💻 Autor
 
-Proyecto desarrollado para el curso de **Estructuras de Datos**.
-Por: Dylan Odair Paz Navas (202503824)
+* Proyecto desarrollado para el curso de **Estructuras de Datos**.
+* Por: Dylan Odair Paz Navas (202503824).
+* UNIVERSIDAD DA VINCI DE GUATEMALA.
